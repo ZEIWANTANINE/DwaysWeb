@@ -1,0 +1,30 @@
+﻿@model DwaysWeb.Models.Products
+
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large" data-setbg="@Url.Content("../img/"+Model.ProductPhoto)" alt="@Model.ProductName">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.ProductName</h3>
+                    <div class="product__details__price">@Model.ProductPrice</div>
+                    <p>@Model.ProductDescription</p>
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <a class="primary-btn" asp-action="Add" asp-controller="Cart" asp-route-ProductId="@Model.ProductId">ADD TO CARD</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

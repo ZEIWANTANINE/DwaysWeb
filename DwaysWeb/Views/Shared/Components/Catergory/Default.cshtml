@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Catergory>
+
+<div class="row featured__controls text-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-1 col-sm-4">
+            <ul class="list-inline">
+                <li>@item.Name</li>
+            </ul>
+        </div>
+    }
+</div>
+

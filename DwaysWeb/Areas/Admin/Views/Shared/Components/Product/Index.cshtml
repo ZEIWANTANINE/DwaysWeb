@@ -1,0 +1,32 @@
+﻿
+@model List<DwaysWeb.Models.Products> 
+
+@using DwaysWeb.Respository.Components
+@using Microsoft.AspNetCore.Mvc.Routing
+
+
+    <div class="row featured__filter">
+    @foreach (var products in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-5 ">
+            
+                <div class="featured__item">
+                    
+                    <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/img/"+products.ProductPhoto)">
+                        <ul class="featured__item__pic__hover">
+                        <li><a asp-action ="Add" asp-controller="Cart" asp-route-ProductId="@products.ProductId"><i class="fa fa-shopping-cart" ></i></a></li>
+                        </ul>
+                    </div>
+                <a asp-action="Details" asp-controller="Product" asp-route-ProductId="@products.ProductId">
+                    <div class="featured__item__text">
+                        <h6>@products.ProductName</h6>
+                        <h5>@products.ProductPrice</h5>
+                    </div>
+                    </a>
+                </div>
+        </div>
+    }
+    </div>
+}
+
+

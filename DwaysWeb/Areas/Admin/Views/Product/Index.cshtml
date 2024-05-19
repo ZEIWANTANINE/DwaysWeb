@@ -1,0 +1,57 @@
+﻿@model List<DwaysWeb.Models.Products>
+@{
+    ViewData["title"] = "Product Listed";
+}
+
+<h3>Product List</h3>
+<a asp-action="Create" asp-controller="Product">Thêm Sản Phẩm</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Chú thích sản phẩm</th>
+            <th scope="col">Giá sản phẩm</th>
+            <th scope="col">Hình ảnh sản phẩm</th>
+            <th scope="col">Danh mục sản phẩm</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            int index = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@index</th>
+                    <td>@item?.ProductName ?? "No name"</td>
+                    <td>@item?.ProductDescription ?? "No description"</td>
+                    <td>@item?.ProductPrice.ToString("C") ?? "No price"</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item?.ProductPhoto))
+                        {
+                            <img src="~/img/@item.ProductPhoto" width="120" />
+                        }
+                        else
+                        {
+                            <span>No image</span>
+                        }
+                    </td>
+                    <td>@item?.Catergory?.Name ?? "No category"</td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-warning btn-sm" asp-controller="Product" asp-route-id="@item?.ProductId">Sửa</a>
+                        <a asp-action="Delete" class="btn btn-danger btn-sm" asp-controller="Product" asp-route-id="@item?.ProductId">Xoá</a>
+                    </td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7">No products available</td>
+            </tr>
+        }
+    </tbody>
+</table>
