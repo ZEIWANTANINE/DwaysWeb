@@ -1,0 +1,62 @@
+﻿@model List<DwaysWeb.Models.Blog>
+@{
+    ViewData["title"] = "Blog Listed";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Product List</h3>
+<a asp-action="Create" asp-controller="Blog" asp-area="Admin">Thêm Blog</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tiêu đề</th>
+            <th scope="col">Tóm tắt</th>
+            <th scope="col">Hình ảnh Blog</th>
+            <th scope="col">Bài Viết</th>
+            <th scope="col">Thời gian</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            int index = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@index</th>
+                    <td>@item?.BlogName ?? "No name"</td>
+                    <td>@item?.BlogDescriptions ?? "No description"</td>
+                    
+                    <td>
+                        @if (!string.IsNullOrEmpty(item?.BlogPhoto))
+                        {
+                            <img src="~/img/@item.BlogPhoto" width="120" />
+                        }
+                        else
+                        {
+                            <span>No image</span>
+                        }
+                    </td>
+                    <td>@item?.BlogArticle ?? "No article"</td>
+                    <td>@item?.BlogDate ?? "No time"</td>
+
+                    <td>
+                        <a asp-action="Edit" class="btn btn-warning btn-sm" asp-controller="Product" asp-route-id="@item?.BlogId">Sửa</a>
+                        <a asp-action="Delete" class="btn btn-danger btn-sm" asp-controller="Product" asp-route-id="@item?.BlogId">Xoá</a>
+                    </td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7">No products available</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

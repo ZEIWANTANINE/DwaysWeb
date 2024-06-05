@@ -26,7 +26,7 @@ namespace DwaysWeb.Areas.Admin.Controllers
             {
                 return View(new List<Products>()); // Pass an empty list to avoid null issues in the view
             }
-            return View();
+            return View(products);
         }
         public IActionResult Create() {
             ViewBag.Catergories= new SelectList(_dataContext.Catergories,"Id","Name");
@@ -35,6 +35,7 @@ namespace DwaysWeb.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Create(Products product)
         {
             ViewBag.Catergories = new SelectList(_dataContext.Catergories, "Id", "Name", product.CatergoryId);
@@ -47,6 +48,7 @@ namespace DwaysWeb.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Sản phẩm đã có trong database");
                     return View(product);
                 }
+
                 if(product.ImageUpload!=null)
                 {
                     string uploadsDir = Path.Combine(_webHostEnvironment.WebRootPath, "media/product");
@@ -62,7 +64,7 @@ namespace DwaysWeb.Areas.Admin.Controllers
                 _dataContext.Update(product);
                 await _dataContext.SaveChangesAsync();  
                 TempData["success"] = "Cập nhật sản phẩm thành công";
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Product", new { area = "Admin" });
             }
             else
             {
@@ -75,6 +77,8 @@ namespace DwaysWeb.Areas.Admin.Controllers
                     
                     }
                 }
+                string errorMessage=string.Join(", ", errors);
+                return BadRequest(errorMessage);
             }
             return View(product);
         }

@@ -1,0 +1,55 @@
+﻿@model DwaysWeb.Models.Blog
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>View</h1>
+
+<h4>Blogs</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BlogName" class="control-label">Name</label>
+                <input asp-for="BlogName" class="form-control" />
+                <span asp-validation-for="BlogName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogDescriptions" class="control-label">Description</label>
+                <input asp-for="BlogDescriptions" class="form-control" />
+                <span asp-validation-for="BlogDescriptions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Photo</label>
+                <input asp-for="ImageUpload" class="form-control" />
+                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogArticle" class="control-label">Article</label>
+                <input asp-for="BlogArticle" class="form-control" />
+                <span asp-validation-for="BlogArticle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogDate" class="control-label">Date</label>
+                <input asp-for="BlogDate" class="form-control" />
+                <span asp-validation-for="BlogDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-area="Admin" asp-controller="Blog" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

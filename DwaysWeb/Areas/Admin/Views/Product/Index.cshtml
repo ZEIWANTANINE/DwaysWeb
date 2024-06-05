@@ -1,10 +1,12 @@
 ﻿@model List<DwaysWeb.Models.Products>
 @{
     ViewData["title"] = "Product Listed";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+
 <h3>Product List</h3>
-<a asp-action="Create" asp-controller="Product">Thêm Sản Phẩm</a>
+<a asp-action="Create" asp-controller="Product" asp-area="Admin">Thêm Sản Phẩm</a>
 <table class="table">
     <thead>
         <tr>

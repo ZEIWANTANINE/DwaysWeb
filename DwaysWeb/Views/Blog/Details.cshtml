@@ -1,0 +1,12 @@
+﻿@model DwaysWeb.Models.Blog
+
+
+<div class="blog-details">
+    <div class="blog-photo w-100">
+        <img src="@Url.Content("~/img/" + @Model.BlogPhoto)" alt="Blog Photo">
+    </div>
+    <h1>@Model.BlogName</h1>
+    <div class="blog-description w-100 text-body">
+        <p>@Model.BlogDescriptions</p>
+    </div>
+</div>

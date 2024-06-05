@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DwaysWeb.Migrations
 {
-    public partial class newsecdb : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +55,11 @@ namespace DwaysWeb.Migrations
                     BlogId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BlogName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    BlogPhoto = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false)
+                    BlogWriter = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BlogPhoto = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
+                    BlogDescriptions = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
+                    BlogArticle = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
+                    BlogDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -13,6 +13,7 @@ namespace DwaysWeb.Controllers
         }
         public IActionResult Index()
         {
+            
             var blogs = _dataContext.Blogs.ToList(); // Retrieve blogs from database
             if (!blogs.Any())
             {
@@ -20,6 +21,15 @@ namespace DwaysWeb.Controllers
                 return View(new List<DwaysWeb.Models.Blog>());
             }
             return View(blogs); // Pass the list of blogs to the view
+        }
+        public IActionResult Details(int id)
+        {
+            var blog = _dataContext.Blogs.FirstOrDefault(b => b.BlogId == id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            return View(blog);
         }
     }
 }

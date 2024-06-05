@@ -3,29 +3,26 @@
 @using DwaysWeb.Respository.Components
 @using Microsoft.AspNetCore.Mvc.Routing
 
-        <div class="row featured__filter">
+        <div class="row featured__filter pt-5">
             @foreach (var blog in Model)
             {
                 <div class="col-lg-3 col-md-4 col-sm-5 ">
 
                     <div class="featured__item">
-
-                        <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/img/" + blog.BlogPhoto)">
-                            <ul class="featured__item__pic__hover">
-                                <li><a asp-action="Add" asp-controller="Cart" asp-route-ProductId="@blog.BlogId"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
+                    <a asp-action="Details" asp-controller="Blog" asp-route-id="@blog.BlogId">
+                    
+                        <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/img/" + blog.BlogPhoto)">    
                         </div>
-                        <a asp-action="Details" asp-controller="Product" asp-route-ProductId="@blog.BlogId">
                             <div class="featured__item__text">
-                                <h6>@blog.BlogName</h6>
-
-                            </div>
-                        </a>
+                        <h6>@blog.BlogName</h6>
+                        <p>
+                            @blog.BlogDescriptions
+                        </p>
+                      </div>
+                    </a>
                     </div>
-                </div>
+                </div>            
             }
         </div>
-        }
-     </div>
-     </div>
+        
 

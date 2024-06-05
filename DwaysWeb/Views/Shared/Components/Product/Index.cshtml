@@ -1,11 +1,9 @@
-﻿
-@model List<DwaysWeb.Models.Products> 
+﻿@model List<DwaysWeb.Models.Products> 
 
 @using DwaysWeb.Respository.Components
 @using Microsoft.AspNetCore.Mvc.Routing
 
-
-    <div class="row featured__filter">
+ <div class="row featured__filter">
     @foreach (var products in Model)
     {
         <div class="col-lg-3 col-md-4 col-sm-5 ">

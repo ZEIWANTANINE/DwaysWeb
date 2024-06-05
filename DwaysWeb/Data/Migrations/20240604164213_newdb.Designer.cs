@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DwaysWeb.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240507153108_newsecdb")]
-    partial class newsecdb
+    [Migration("20240604164213_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,19 @@ namespace DwaysWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BlogId"), 1L, 1);
 
+                    b.Property<string>("BlogArticle")
+                        .IsRequired()
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("BlogDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BlogDescriptions")
+                        .IsRequired()
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("BlogName")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -41,6 +54,10 @@ namespace DwaysWeb.Migrations
                         .IsRequired()
                         .HasMaxLength(3000)
                         .HasColumnType("nvarchar(3000)");
+
+                    b.Property<string>("BlogWriter")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BlogId");
 
